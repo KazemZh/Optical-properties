@@ -11,7 +11,6 @@ def calc_n_kapa_R_alpha(energy, er, ei):
     R = ((n-1)**2 + kapa**2) / ((n+1)**2 + kapa**2)
     return kapa, alpha, n, R
 
-#load the data file given from epsilon.x in quantum espresso
 er = np.loadtxt('epsr_pwscf.dat')
 ei = np.loadtxt('epsi_pwscf.dat')
 eels = np.loadtxt('eels_pwscf.dat')
@@ -26,7 +25,6 @@ data[5:7] = get_para_perp(eels)
 data[7::2] = calc_n_kapa_R_alpha(energy, data[1], data[3])
 data[8::2] = calc_n_kapa_R_alpha(energy, data[2], data[4])
 
-
 header = '  '.join([
     '1:Energy(eV)', '2:er_para(a.u.)', '3:er_perp(a.u)', '4:ei_para(a.u)',
     '5:ei_perp(a.u.)', '6:eels_para(a.u.)', '7:eels_perp(a.u.)',
@@ -34,5 +32,5 @@ header = '  '.join([
     '11:kapa_perp(a.u.)', '12:R_para(a.u.)', '13:R_perp(a.u.)',
     '14:alpha_para(cm^(-1))', '15:alpha_perp(cm^(-1))'
     ])
-# You can play with the format to align the columns
+
 np.savetxt('optical_properties.dat', data.T, header=header, delimiter=" ", fmt="%17.5f")
