@@ -9,7 +9,7 @@ def calc_n_kapa_R_alpha(energy, er, ei):
     alpha = 4*np.pi*kapa / (conversion/energy)
     n = (1/np.sqrt(2)) * np.sqrt(er + np.sqrt((er)**2 + (ei)**2))
     R = ((n-1)**2 + kapa**2) / ((n+1)**2 + kapa**2)
-    return kapa, alpha, n, R
+    return n, kapa, R, alpha
 
 er = np.loadtxt('epsr_pwscf.dat')
 ei = np.loadtxt('epsi_pwscf.dat')
